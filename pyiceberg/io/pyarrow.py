@@ -1561,6 +1561,7 @@ def _task_to_record_batches(
             # But in case there are positional deletes, we have to apply them first
             filter=pyarrow_filter if not positional_deletes else None,
             columns=[col.name for col in file_project_schema.columns],
+            fragment_scan_options=ds.ParquetFragmentScanOptions(use_buffered_stream=True)
         )
 
         next_index = 0
